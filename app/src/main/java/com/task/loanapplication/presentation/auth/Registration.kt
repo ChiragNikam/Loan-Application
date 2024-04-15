@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -64,12 +65,12 @@ fun RegistrationScreen(
         Box(modifier = Modifier.size(150.dp)) {
             // Photo Selector
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                imageVector = Icons.Filled.Person,
                 contentDescription = "Select Photo",
                 modifier = Modifier
                     .size(140.dp)
                     .align(Alignment.BottomStart)
-                    .background(Color.LightGray, shape = RoundedCornerShape(12.dp))
+                    .background(Color.LightGray.copy(0.5f), shape = RoundedCornerShape(12.dp))
                     .clickable {
                         // Open photo selector here
                     }

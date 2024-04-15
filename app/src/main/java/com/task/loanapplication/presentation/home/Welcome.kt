@@ -60,7 +60,7 @@ fun HomeScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(48.dp))
 
         OutlinedButton(
-            onClick = { navController.navigate("auth/login") },
+            onClick = { navController.popBackStack() },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Logout")
