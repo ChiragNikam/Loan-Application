@@ -8,10 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
@@ -65,22 +70,38 @@ fun TermsAndConditionsScreen(
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-            Text(
-                text = buildAnnotatedString {
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                        append("1. ")
-                    }
-                    append("You agree to the terms and conditions stated herein.\n\n")
 
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                        append("2. ")
-                    }
-                    append("You agree to repay the loan amount as per the specified terms.\n\n")
+            // Condition 1
+            var isChecked1 by remember { mutableStateOf(false) }
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = isChecked1,
+                    onCheckedChange = { isChecked1 = it },
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(
+                    text = "You agree to the terms and conditions stated herein.",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
 
-                    // Add more terms and conditions as needed
-                },
-                style = MaterialTheme.typography.bodyMedium
-            )
+            // Condition 2
+            var isChecked2 by remember { mutableStateOf(false) }
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = isChecked2,
+                    onCheckedChange = { isChecked2 = it },
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(
+                    text = "You agree to repay the loan amount as per the specified terms.",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
 
             Spacer(modifier = Modifier.height(32.dp))
         }

@@ -82,7 +82,6 @@ fun QRCodeScreen(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-
             // QR code
             Image(
                 modifier = Modifier.size(250.dp),
@@ -91,6 +90,12 @@ fun QRCodeScreen(
             )
 
             Spacer(modifier = Modifier.height(32.dp))
+            Text(
+                text = "Thank You! Your Registration is Successfully Completed. Please Proceed with the Login Process.",
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
 
         }

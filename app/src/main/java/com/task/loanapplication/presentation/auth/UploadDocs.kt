@@ -105,7 +105,7 @@ fun UploadDocumentsScreen(
 
             // Banking Statement Upload
             DocumentUploadView(
-                documentName = "Banking Statement:",
+                documentName = "Banking Statement(One-Year):",
                 documentUri = bankingStatementUri,
                 onDocumentSelected = { uri -> bankingStatementUri = uri }
             )
@@ -114,7 +114,7 @@ fun UploadDocumentsScreen(
 
             // License Upload
             DocumentUploadView(
-                documentName = "License:",
+                documentName = "Driving License:",
                 documentUri = licenseUri,
                 onDocumentSelected = { uri -> licenseUri = uri }
             )
@@ -124,6 +124,15 @@ fun UploadDocumentsScreen(
             // Electric Bill Upload
             DocumentUploadView(
                 documentName = "Electric Bill:",
+                documentUri = electricBillUri,
+                onDocumentSelected = { uri -> electricBillUri = uri }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Electric Bill Upload
+            DocumentUploadView(
+                documentName = "House Tax Receipt:",
                 documentUri = electricBillUri,
                 onDocumentSelected = { uri -> electricBillUri = uri }
             )

@@ -43,7 +43,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Welcome!",
+            text = "Welcome to Loan Management System",
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight(700),

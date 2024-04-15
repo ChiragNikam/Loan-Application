@@ -33,10 +33,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.task.loanapplication.domain.MainViewModel
 
 @Composable
 fun SelectLoanAmountScreen(
-    onNext: () -> Unit
+    onNext: () -> Unit,
+    viewModel: MainViewModel
 ) {
     Scaffold(
         bottomBar = {
@@ -51,7 +54,7 @@ fun SelectLoanAmountScreen(
                 }
             }
         }
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -81,7 +84,9 @@ fun SelectLoanAmountScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             // Loan Amount Dropdown
-            DropDownMenu(arrayOf("3 Lakhs", "4 Lakhs", "5 Lakhs", "8 Lakhs"))
+            var selectedOption by remember { mutableStateOf("") }
+            selectedOption = DropDownMenu(arrayOf("3 Lakhs", "4 Lakhs", "5 Lakhs", "8 Lakhs"))
+            viewModel.updateSelectedLoan(selectedOption)
 
             Spacer(modifier = Modifier.height(48.dp))
 
@@ -91,7 +96,7 @@ fun SelectLoanAmountScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropDownMenu(options: Array<String>) {
+fun DropDownMenu(options: Array<String>): String {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf(options[0]) }
@@ -132,12 +137,11 @@ fun DropDownMenu(options: Array<String>) {
             }
         }
     }
+    return selectedText
 }
 
 @Preview(showSystemUi = true)
 @Composable
 private fun LoanAmountPreview() {
-    SelectLoanAmountScreen {
-
-    }
+    SelectLoanAmountScreen (onNext = {}, viewModel = viewModel())
 }

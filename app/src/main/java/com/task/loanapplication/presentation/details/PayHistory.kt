@@ -30,8 +30,7 @@ import com.task.loanapplication.data.util.Payment
 
 @Composable
 fun PaymentHistoryScreen(
-    paymentList: List<Payment>,
-    onRateAppClick: () -> Unit
+    paymentList: List<Payment>
 ) {
     Column(
         modifier = Modifier
@@ -40,28 +39,11 @@ fun PaymentHistoryScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            // Info text
-            Text(
-                text = "Payment History",
-                style = MaterialTheme.typography.headlineSmall
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                IconButton(
-                    modifier = Modifier.size(28.dp),
-                    onClick = onRateAppClick
-                ) {
-                    Icon(imageVector = Icons.Filled.Star, contentDescription = "Rate Button")
-                }
-                Text(text = "Rate Us", fontSize = MaterialTheme.typography.labelSmall.fontSize)
-            }
-        }
+        // Info text
+        Text(
+            text = "Payment History",
+            style = MaterialTheme.typography.headlineSmall
+        )
 
         // Payment history list
         LazyColumn(
@@ -108,7 +90,7 @@ fun PaymentItem(payment: Payment) {
 @Preview(showSystemUi = true)
 @Composable
 private fun PaymentHistoryPreview() {
-    PaymentHistoryScreen(paymentList = getSamplePaymentHistory()){}
+    PaymentHistoryScreen(paymentList = getSamplePaymentHistory())
 }
 
 fun getSamplePaymentHistory(): List<Payment> {

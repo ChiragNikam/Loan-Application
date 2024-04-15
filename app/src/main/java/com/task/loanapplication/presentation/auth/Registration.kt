@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,7 +17,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -57,17 +61,21 @@ fun RegistrationScreen(
     ) {
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Photo Selector
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Select Photo",
-            modifier = Modifier
-                .size(140.dp)
-                .background(Color.LightGray, shape = RoundedCornerShape(12.dp))
-                .clickable {
-                    // Open photo selector here
-                }
-        )
+        Box(modifier = Modifier.size(150.dp)) {
+            // Photo Selector
+            Image(
+                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                contentDescription = "Select Photo",
+                modifier = Modifier
+                    .size(140.dp)
+                    .align(Alignment.BottomStart)
+                    .background(Color.LightGray, shape = RoundedCornerShape(12.dp))
+                    .clickable {
+                        // Open photo selector here
+                    }
+            )
+            Icon(modifier = Modifier.align(Alignment.TopEnd),imageVector = Icons.Filled.Edit, contentDescription = "Upload Image")
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -77,6 +85,17 @@ fun RegistrationScreen(
             onValueChange = { userName = it },
             label = { Text("Username") },
             modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Username Field
+        OutlinedTextField(
+            value = userName,
+            onValueChange = { userName = it },
+            label = { Text("Phone Number") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -106,7 +125,7 @@ fun RegistrationScreen(
         OutlinedTextField(
             value = mobileNo,
             onValueChange = { mobileNo = it },
-            label = { Text("Mobile Number") },
+            label = { Text("Aadhar Number") },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
@@ -128,7 +147,29 @@ fun RegistrationScreen(
         OutlinedTextField(
             value = bankingStatementAct,
             onValueChange = { bankingStatementAct = it },
-            label = { Text("Banking Statement Account") },
+            label = { Text("Bank Name") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Banking Statement Account Field
+        OutlinedTextField(
+            value = bankingStatementAct,
+            onValueChange = { bankingStatementAct = it },
+            label = { Text("Account Number") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Banking Statement Account Field
+        OutlinedTextField(
+            value = bankingStatementAct,
+            onValueChange = { bankingStatementAct = it },
+            label = { Text("IFSC Code") },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
@@ -139,7 +180,7 @@ fun RegistrationScreen(
         OutlinedTextField(
             value = housingReciptNo,
             onValueChange = { housingReciptNo = it },
-            label = { Text("Housing Receipt Number") },
+            label = { Text("House Tax Receipt Number") },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
