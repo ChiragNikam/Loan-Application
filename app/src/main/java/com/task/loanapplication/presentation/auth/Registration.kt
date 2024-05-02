@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,11 +22,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,10 +41,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.task.loanapplication.R
+import com.task.loanapplication.domain.MainViewModel
 
 @Composable
 fun RegistrationScreen(
+    viewModel: MainViewModel,
     onRegisterClick: () -> Unit
 ) {
     var userName by remember { mutableStateOf("") }
@@ -166,7 +173,7 @@ fun RegistrationScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Banking Statement Account Field
+        // Banking Statement IFSC Code
         OutlinedTextField(
             value = bankingStatementAct,
             onValueChange = { bankingStatementAct = it },
@@ -177,6 +184,8 @@ fun RegistrationScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        val onRent by viewModel.isLivingOnRent.collectAsState()
+
         // Housing Receipt Number Field
         OutlinedTextField(
             value = housingReciptNo,
@@ -185,6 +194,21 @@ fun RegistrationScreen(
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
+
+        Row(
+            modifier = Modifier.align(Alignment.Start),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = onRent,
+                onCheckedChange = { viewModel.updateOnRent(it) },
+                modifier = Modifier.padding(end = 8.dp)
+            )
+            Text(
+                text = "Do you live on Rent",
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
 
         Spacer(modifier = Modifier.height(28.dp))
 
@@ -204,6 +228,6 @@ fun RegistrationScreen(
 @Composable
 private fun RegistrationScreenPreview() {
     Surface(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        RegistrationScreen {}
+        RegistrationScreen(viewModel = viewModel()) {}
     }
 }

@@ -39,12 +39,12 @@ fun NavigationForApp(
                 }
             }
             composable("auth/register") {
-                RegistrationScreen {
+                RegistrationScreen(viewModel) {
                     navHostController.navigate("auth/upload_docs")
                 }
             }
             composable("auth/upload_docs") {
-                UploadDocumentsScreen {
+                UploadDocumentsScreen(viewModel) {
                     navHostController.navigate("loan")
                 }
             }
